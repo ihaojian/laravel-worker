@@ -6,8 +6,8 @@ namespace Laravel\Worker;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Workerman\Protocols\Http as WorkerHttp;
 
 /**

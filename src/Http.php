@@ -3,6 +3,8 @@
 
 namespace Laravel\Worker;
 
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Workerman\Connection\TcpConnection;
 use Workerman\Lib\Timer;
 use Workerman\Protocols\Http as WorkerHttp;
@@ -99,17 +101,8 @@ class Http extends Server
             call_user_func_array($this->appInit, [$this->app]);
         }
 
-        //laravel不需要额外初始化
-//        $this->app->initialize();
-
         $this->lastMtime = time();
-
         $this->app->workerman = $worker;
-
-        //暂时禁用绑定
-//        $this->app->bind([
-//            'think\Cookie' => Cookie::class,
-//        ]);
 
         if (0 == $worker->id && $this->monitor) {
             $paths = $this->monitor['path'];
@@ -236,14 +229,7 @@ class Http extends Server
      */
     protected function initMimeTypeMap()
     {
-        //反射获取MIME
-        if (method_exists(WorkerHttp::class, 'getMimeTypesFile')) {
-            $mime_file = WorkerHttp::getMimeTypesFile();
-        }else{
-            $reflector = new \ReflectionClass(WorkerHttp::class);
-            $fn = $reflector->getFileName();
-            $mime_file = dirname($fn) . '/Http/mime.types';
-        }
+        $mime_file = WorkerHttp::getMimeTypesFile();
 
         if (!is_file($mime_file)) {
             Worker::log("$mime_file mime.type file not fond");
