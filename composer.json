@@ -1,0 +1,40 @@
+{
+    "name": "ihaojian/laravel-worker",
+    "description": "workerman extend for laravel8.0",
+    "keywords": [
+        "worker",
+        "workerman",
+        "laravel"
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "eric",
+            "email": "39516046@qq.com"
+        }
+    ],
+    "require": {
+        "workerman/workerman": "^3.5.23",
+        "workerman/gateway-worker": "^3.0.0",
+        "laravel/framework": "^8.0.0",
+        "psy/psysh": "^0.10.4",
+        "ext-fileinfo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Worker\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravel\\Worker\\WorkerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
