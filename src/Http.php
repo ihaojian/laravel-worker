@@ -3,7 +3,6 @@
 
 namespace Laravel\Worker;
 
-use Illuminate\Foundation\Application;
 use Workerman\Connection\TcpConnection;
 use Workerman\Lib\Timer;
 use Workerman\Protocols\Http as WorkerHttp;
