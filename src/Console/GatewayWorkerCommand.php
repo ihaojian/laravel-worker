@@ -69,21 +69,20 @@ class GatewayWorkerCommand extends Command
             $this->line('Starting GatewayWorker server...');
         }
 
-        $config = Config::get("gateway_worker");
-
-        if ($this->hasOption("host")) {
+        $option = Config::get("gateway_worker");
+        if ($this->hasOption("host")&&!empty($this->option("host"))) {
             $host = $this->option("host");
         }else{
             $host = !empty($option['host']) ? $option['host'] : '0.0.0.0';
         }
 
-        if ($this->hasOption("port")) {
-            $host = $this->option("port");
+        if ($this->hasOption("port")&&!empty($this->option("port"))) {
+            $port = $this->option("port");
         }else{
-            $host = !empty($option['port']) ? $option['port'] : '2347';
+            $port = !empty($option['port']) ? $option['port'] : '2347';
         }
 
-        $this->start($host, $port, $this->config);
+        $this->start($host, (int) $port, $option);
     }
 
     /**
