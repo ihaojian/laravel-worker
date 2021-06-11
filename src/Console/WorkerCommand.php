@@ -115,9 +115,9 @@ class WorkerCommand extends Command
         unset($this->config['root']);
 
         // 设置文件监控
-//        if (DIRECTORY_SEPARATOR !== '\\' && (App::isDebug() || !empty($this->config['file_monitor']))) {
+//        if (DIRECTORY_SEPARATOR !== '\\' && (\config('app.debug') || !empty($this->config['file_monitor']))) {
 //            $interval = $this->config['file_monitor_interval'] ?? 2;
-//            $paths    = !empty($this->config['file_monitor_path']) ? $this->config['file_monitor_path'] : [App::getAppPath(), App::getConfigPath()];
+//            $paths    = !empty($this->config['file_monitor_path']) ? $this->config['file_monitor_path'] : [App::path(), App::configPath()];
 //            $worker->setMonitor($interval, $paths);
 //            unset($this->config['file_monitor'], $this->config['file_monitor_interval'], $this->config['file_monitor_path']);
 //        }

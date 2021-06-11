@@ -6,6 +6,7 @@ namespace Laravel\Worker\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Laravel\Worker\Server as WorkerServer;
 use Workerman\Worker;
 
@@ -112,7 +113,7 @@ class ServerCommand extends Command
 
         // 开启守护进程模式
         if ($this->hasOption("daemon")) {
-            $worker->setStaticOption('daemonize', true);
+            Worker::$daemonize = true;
         }
 
         if (!empty($this->config['ssl'])) {
